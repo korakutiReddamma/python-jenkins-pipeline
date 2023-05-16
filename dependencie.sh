@@ -1,4 +1,4 @@
 #!/bin/bash
-sudo yum install python3 -y
-sudo yum install python3-pip -y
-sudo pip install flask
+yum install python3 -y
+yum install python3-pip -y
+pip install flask
