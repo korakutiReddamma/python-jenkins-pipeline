@@ -19,9 +19,9 @@ pipeline {
         """
       }   
     }
-    stage('dependencis'){
+    stage('dependencie'){
         steps{
-            sh 'sh dependencies.sh'
+            sh 'sh dependencie.sh'
         }
     }
     stage('Run'){
