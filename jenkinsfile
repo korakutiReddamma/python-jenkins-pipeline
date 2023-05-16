@@ -29,7 +29,7 @@ pipeline {
     stage('Run'){
         steps{
             sh """
-                ssh root@172.31.44.141 "python3 app.py"
+                ssh root@172.31.44.141 "sudo gunicorn app:app -b 0.0.0.0:2000 -D"
             """
         }
     }
