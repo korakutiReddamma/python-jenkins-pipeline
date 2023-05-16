@@ -13,7 +13,7 @@ pipeline {
       steps {
         sh """
             aws s3 cp s3://jenkins-satatic/flask.zip .
-            ssh root@172.31.44.141 "rm -rf *"'
+            ssh root@172.31.44.141 "rm -rf *"
             scp flask.zip root@172.31.44.141:/root
             ssh root@172.31.44.141 "unzip flask.zip"
         """
