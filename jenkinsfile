@@ -21,7 +21,9 @@ pipeline {
     }
     stage('dependencie'){
         steps{
-            sh 'sh dependencie.sh'
+            sh """
+                ssh root@172.31.44.141 'sh dependencie.sh'
+            """
         }
     }
     stage('Run'){
