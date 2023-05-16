@@ -1,0 +1,35 @@
+pipeline {
+  agent any
+  stages {
+    stage('build') {
+      steps {
+        sh """
+            zip flask.zip *
+            aws s3 cp flask.zip s3://jenkins-satatic/
+        """
+      }
+    }
+    stage('test') {
+      steps {
+        sh """
+            aws s3 cp s3://jenkins-satatic/flask.zip .
+            ssh root@172.31.44.141 "rm -rf *"'
+            scp flask.zip root@172.31.44.141:/root
+            ssh root@172.31.44.141 "unzip flask.zip"
+        """
+      }   
+    }
+    stage('dependencis'){
+        steps{
+            sh 'sh dependencies.sh'
+        }
+    }
+    stage('Run'){
+        steps{
+            sh """
+                ssh root@172.31.44.141 "python3 app.py"
+            """
+        }
+    }
+  }
+}
